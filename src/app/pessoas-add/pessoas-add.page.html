@@ -1,6 +1,10 @@
 <ion-header>
   <ion-toolbar>
     <ion-title>Cadastrar pessoa</ion-title>
+    <ion-buttons slot="end">
+      <ion-back-button defaultHref="home"></ion-back-button>
+    </ion-buttons>
+
   </ion-toolbar>
 </ion-header>
 
@@ -51,26 +55,19 @@
           </ion-item>
 
 
-
           <ion-item>
-            <ion-input name="password" type="password" placeholder="Password" ngModel required></ion-input>
+            <ion-label>Peso (KG)</ion-label>
+            <ion-input name="peso" type="number" placeholder="" ngModel required></ion-input>
           </ion-item>
 
-
-
+   
 
 
           <div padding>
-            <ion-button size="large" type="submit" [disabled]="form.invalid" expand="block">Login</ion-button>
+            <ion-button size="large" type="submit" [disabled]="form.invalid" expand="block">Save</ion-button>
           </div>
         </ion-col>
       </ion-row>
     </ion-grid>
   </form>
-  <ion-row>
-    <div text-center>
-      If you don't have an account, please <a routerLink='/register'>
-        register</a> first!
-    </div>
-  </ion-row>
 </ion-content>

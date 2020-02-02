@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { WebserviceService } from '../webservice.service';
 import { Router } from '@angular/router';
 
+
 @Component({
   selector: 'app-home',
   templateUrl: 'home.page.html',
@@ -20,13 +21,10 @@ export class HomePage {
   ngOnInit() {
 
     this.pessoas = [];
-    console.log("1");
-    this.webservice.sendpost('/all', {'send':1 }).then((response) => {
-      console.log("2");
+    this.webservice.sendpost('/pessoas/all', {'send':1 }).then((response) => {
       this.dados = response;
       this.pessoas = this.dados.dados;
     }).catch((error) => {
-      console.log("3");
       this.dados = error;
       if (this.dados.status === 401) {
         alert(this.dados.error.errors[0]);
@@ -46,6 +44,17 @@ export class HomePage {
 
   remove(pessoa) {
 
+      this.webservice.sendpost('/pessoas/delete/' + pessoa.id, {}).then((response) => {
+        this.dados = response;
+        this.router.navigateByUrl('/home');
+      }).catch((error) => {
+        this.dados = error;
+        if (this.dados.status === 401) {
+          alert(this.dados.error.errors[0]);
+        } else {
+          alert('Falha de comunicação');
+        }
+      }); 
   }
 
 }
