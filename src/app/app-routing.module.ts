@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 
 const routes: Routes = [
-  { path: '', redirectTo: 'home', pathMatch: 'full' },
+  { path: '', redirectTo: 'login', pathMatch: 'full' },
   { path: 'home', loadChildren: () => import('./home/home.module').then( m => m.HomePageModule)},
   {
     path: 'register',
@@ -11,6 +11,14 @@ const routes: Routes = [
   {
     path: 'login',
     loadChildren: () => import('./auth/login/login.module').then( m => m.LoginPageModule)
+  },
+  {
+    path: 'pessoas-add',
+    loadChildren: () => import('./pessoas-add/pessoas-add.module').then( m => m.PessoasAddPageModule)
+  },
+  {
+    path: 'pessoas-edit',
+    loadChildren: () => import('./pessoas-edit/pessoas-edit.module').then( m => m.PessoasEditPageModule)
   },
 ];
 

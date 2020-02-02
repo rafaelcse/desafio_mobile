@@ -10,14 +10,17 @@ import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 
 import { AuthModule } from  './auth/auth.module';
+import { InterceptorService } from './interceptor.service';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
 @NgModule({
   declarations: [AppComponent],
   entryComponents: [],
-  imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule, AuthModule],
+  imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule, AuthModule, HttpClientModule],
   providers: [
     StatusBar,
     SplashScreen,
+    { provide: HTTP_INTERCEPTORS, useClass: InterceptorService, multi: true },
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
   ],
   bootstrap: [AppComponent]
