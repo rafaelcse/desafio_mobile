@@ -46,7 +46,7 @@ export class HomePage {
 
       this.webservice.sendpost('/pessoas/delete/' + pessoa.id, {}).then((response) => {
         this.dados = response;
-        this.router.navigateByUrl('/home');
+        location.reload();
       }).catch((error) => {
         this.dados = error;
         if (this.dados.status === 401) {
